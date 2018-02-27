@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">chocolatePreroll</string>
+    <string name="runtime_permissions">Please enable ALL permissions from app settings.</string>
+</resources>
