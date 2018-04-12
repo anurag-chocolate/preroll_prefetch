@@ -20,7 +20,6 @@ import com.vdopia.ads.lw.LVDOConstants;
 import com.vdopia.ads.lw.PreRollVideoAd;
 import com.vdopia.ads.lw.PrerollAdListener;
 
-
 public class MainActivity extends RequestPermissionActivity implements PrerollAdListener {
 
     Button CLICK;
@@ -30,12 +29,15 @@ public class MainActivity extends RequestPermissionActivity implements PrerollAd
     //MediaController contoller;
     //ImageView Imageview;
     ProgressBar progesbar;
-    private String apiKey="XqjhRR";
+    private String apiKey="llpHX8";
     private static final String TAG = "MediaActivity";
     private LVDOAdRequest adRequest;
+    //private preRollVideoAd preRollVideoAd;
+
 
     private int adWidth;
     private int adHeight;
+
 
     private RelativeLayout mAdLayout;
     private PreRollVideoAd preRollVideoAd;
@@ -51,19 +53,20 @@ public class MainActivity extends RequestPermissionActivity implements PrerollAd
         progesbar=(ProgressBar) findViewById(R.id.loading_progress);
         adRequest = createAdRequest();
         mAdLayout = (RelativeLayout) findViewById(R.id.adLayout);
-
+        preRollVideoAd = new PreRollVideoAd(this);
         adWidth = (mAdLayout.getLayoutParams()).width;
         adHeight = (mAdLayout.getLayoutParams()).height;
-
+        CLICK.setVisibility(View.VISIBLE);
         super.requestAppPermissions(mPermissions, R.string.runtime_permissions, REQUEST_PERMISSIONS);
 
         //Video.setVideoPath("http://ds.serving-sys.com/BurstingRes/Site-43752/Type-16/b20b5095-4319-4ece-8323-4f6cdf1971de.mp4");
         //Video.start();
-        requestPrerollAd();
+        //requestPrerollAd();
 
         mc=new MediaController(MainActivity.this);
         mc.setVisibility(View.GONE);
         Video.setMediaController(mc);
+        PreRollVideoAd.prefetch(this, apiKey, adRequest, LVDOAdSize.IAB_MRECT,IS_MAIN_CONTENT_FULLSCREEN);
     }
 
     @Override
@@ -73,7 +76,8 @@ public class MainActivity extends RequestPermissionActivity implements PrerollAd
         handler.post(new Runnable() {
             @Override
             public void run() {
-                //requestPrerollAd();
+                //requestprerollad();
+                //prerollvideoad.prefetch(this, apikey, adrequest, lvdoadsize.iab_mrect,is_main_content_fullscreen);
 
             }
         });
@@ -127,9 +131,10 @@ public class MainActivity extends RequestPermissionActivity implements PrerollAd
             public void buttonclick(View v){
 
                 //Video.start();
-                CLICK.setVisibility(View.INVISIBLE);
-                //Video.setVisibility(View.INVISIBLE);
-                showPrerollAd();
+
+                Video.setVisibility(View.INVISIBLE);
+                requestPrerollAd();
+                //showPrerollAd();
 
             }
 
@@ -140,8 +145,9 @@ public class MainActivity extends RequestPermissionActivity implements PrerollAd
         Log.d(TAG, "PreRoll Video Ad onPrerollAdLoaded");
          //will show ad, then your content
         progesbar.setVisibility(View.INVISIBLE);
-        CLICK.setVisibility(View.VISIBLE);
+        //CLICK.setVisibility(View.VISIBLE);
         Video.setVisibility(View.VISIBLE);
+        showPrerollAd();
     }
 
     @Override

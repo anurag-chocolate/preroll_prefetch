@@ -46,8 +46,8 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.0'
 
-    compile("com.vdopia.ads.lw:coresdk:2.5.2.12-alpha")  //our mediation sdk, which also includes Chocolate Platform demand
-    ("com.vdopia.ads.lw:google-adapter:1.0.6")
+    compile("com.vdopia.ads.lw:coresdk:2.5.3")  //our mediation sdk, which also includes Chocolate Platform demand
+    compile("com.vdopia.ads.lw:google-adapter:1.0.7")
 
 
     compile 'com.google.android.gms:play-services-ads:11.8.0'
